@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
         bar_corner_radius: 5,
         arrow_curve: 8,
         padding: 18,
-        language: 'ja',
         custom_popup_html: function (task) {
           return `
             <div class="popup-task">
