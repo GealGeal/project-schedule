@@ -1,17 +1,94 @@
 [
   {
-    "title": "設計フェーズ",
+    "id": "phase1",
+    "name": "計画策定準備",
     "start": "2025-08-01",
-    "end": "2025-08-05"
+    "end": "2025-08-15",
+    "progress": 100
   },
   {
-    "title": "開発フェーズ",
+    "id": "task1_1",
+    "name": "キックオフ会議",
+    "start": "2025-08-01",
+    "end": "2025-08-05",
+    "dependencies": "phase1",
+    "progress": 100
+  },
+  {
+    "id": "task1_2",
+    "name": "現行計画のレビュー",
     "start": "2025-08-06",
-    "end": "2025-08-20"
+    "end": "2025-08-15",
+    "dependencies": "task1_1",
+    "progress": 100
   },
   {
-    "title": "テスト・納品",
-    "start": "2025-08-21",
-    "end": "2025-08-25"
+    "id": "phase2",
+    "name": "基礎調査・分析",
+    "start": "2025-08-16",
+    "end": "2025-09-30",
+    "progress": 50
+  },
+  {
+    "id": "task2_1",
+    "name": "高齢者実態調査の設計・実施",
+    "start": "2025-08-16",
+    "end": "2025-09-15",
+    "dependencies": "task1_2",
+    "progress": 100
+  },
+  {
+    "id": "task2_2",
+    "name": "調査票の回収・集計・分析",
+    "start": "2025-09-16",
+    "end": "2025-09-30",
+    "dependencies": "task2_1",
+    "progress": 0
+  },
+  {
+    "id": "phase3",
+    "name": "計画の策定",
+    "start": "2025-10-01",
+    "end": "2025-11-30",
+    "progress": 0
+  },
+  {
+    "id": "task3_1",
+    "name": "サービス量見込み等の算出",
+    "start": "2025-10-01",
+    "end": "2025-10-31",
+    "dependencies": "task2_2",
+    "progress": 0
+  },
+  {
+    "id": "task3_2",
+    "name": "計画素案の作成",
+    "start": "2025-11-01",
+    "end": "2025-11-30",
+    "dependencies": "task3_1",
+    "progress": 0
+  },
+  {
+    "id": "phase4",
+    "name": "議会・住民説明",
+    "start": "2025-12-01",
+    "end": "2025-12-20",
+    "progress": 0
+  },
+  {
+    "id": "task4_1",
+    "name": "議会説明・パブコメ実施",
+    "start": "2025-12-01",
+    "end": "2025-12-15",
+    "dependencies": "task3_2",
+    "progress": 0
+  },
+  {
+    "id": "task4_2",
+    "name": "計画案の確定・納品",
+    "start": "2025-12-16",
+    "end": "2025-12-20",
+    "dependencies": "task4_1",
+    "progress": 0
   }
 ]
