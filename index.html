@@ -2,35 +2,26 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>テスト工程表</title>
+  <title>テストガント</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frappe-gantt/dist/frappe-gantt.css">
   <style>
-    #gantt {
-      min-height: 300px;
-      border: 1px solid #ccc;
-      background: #fff;
-    }
+    #gantt { min-height: 250px; border:1px solid #ccc; }
   </style>
-
 </head>
 <body>
-  <h1>テスト ガントチャート</h1>
+  <h1>テスト工程表</h1>
   <div id="gantt"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/frappe-gantt/dist/frappe-gantt.min.js"></script>
   <script>
-    console.log("インライン実行");
-    if (typeof Gantt === 'undefined') {
-      document.getElementById('gantt').innerText = 'Gantt ライブラリ未読み込み';
-    } else {
+    document.addEventListener('DOMContentLoaded', function () {
       const tasks = [
         { id: "Task1", name: "設計フェーズ", start: "2025-08-01", end: "2025-08-05", progress: 100 },
         { id: "Task2", name: "開発フェーズ", start: "2025-08-06", end: "2025-08-20", progress: 50 },
         { id: "Task3", name: "テスト・納品", start: "2025-08-21", end: "2025-08-25", progress: 0 }
       ];
       new Gantt("#gantt", tasks, { view_mode: 'Day', date_format: 'YYYY-MM-DD' });
-    }
+    });
   </script>
 </body>
 </html>
-
