@@ -2,33 +2,122 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>テストガント</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frappe-gantt/dist/frappe-gantt.css">
+  <title>〇〇市第１０期介護保険事業計画工程表</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frappe-gantt/dist/frappe-gantt.css" integrity="sha384-+gn3x+S9C+Pj0aL23Z9nT1gFhK/h1ZC3SPu2dDy0bhVaKfG7tXGEjDx+2fZc/0YB" crossorigin="anonymous">
   <style>
-    body { font-family: sans-serif; padding: 20px; background:#eef2f7; }
-    #gantt { min-height: 250px; border:1px solid #ccc; background:#fff; margin:20px; }
+    :root {
+      --bg:#f5f8fa;
+      --card:#ffffff;
+      --radius:12px;
+      --shadow:0 12px 30px -10px rgba(0,0,0,0.08);
+      --primary:#276ef1;
+      --text:#1f2d3a;
+      --muted:#6e7c91;
+      --radius-sm:6px;
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0;
+      font-family: "Segoe UI", system-ui,-apple-system,sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.4;
+      padding: 1rem 1rem 3rem;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    h1 {
+      font-size: 1.9rem;
+      margin: 0 0 0.5rem;
+      font-weight: 600;
+    }
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+    }
+    #gantt-wrapper {
+      position: relative;
+      padding: 0.5rem;
+      border-radius: var(--radius);
+      background: #fff;
+      overflow-x: auto;
+    }
+    #gantt {
+      min-height: 420px;
+      /* Frappe Gantt 内部でのバーなどは自動 */
+    }
+    .notice {
+      background: #fff8e1;
+      border: 1px solid #ffe08a;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    .loading {
+      position: absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+      gap:0.5rem;
+      border-radius: var(--radius);
+    }
+    .popup-task {
+      font-family: inherit;
+      font-size: 13px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.12);
+      max-width: 220px;
+    }
+    .popup-task h5 {
+      margin:0 0 6px;
+      font-size:15px;
+      color: var(--primary);
+    }
+    .popup-task p {
+      margin:2px 0;
+    }
+    @media (max-width: 900px){
+      h1 { font-size:1.6rem; }
+    }
   </style>
 </head>
 <body>
-  <h1>テスト工程表</h1>
-  <div id="gantt"></div>
+  <div class="container">
+    <div class="card">
+      <h1>〇〇市第１０期介護保険事業計画工程表</h1>
+      <div class="subtitle">ガントチャート形式で進捗を可視化しています（閲覧専用）</div>
+      <div id="gantt-wrapper" class="card">
+        <div id="gantt"></div>
+        <div id="loading" class="loading" aria-live="polite">
+          <div>読み込み中…</div>
+        </div>
+      </div>
+      <div class="notice">
+        ※ 工程の更新は <code>schedule.json</code> を修正し、再デプロイしてください。
+      </div>
+    </div>
+  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/frappe-gantt/dist/frappe-gantt.min.js"></script>
-  <script>
-    console.log("インライン実行（最小構成）");
-    if (typeof Gantt === 'undefined') {
-      console.error("Gantt ライブラリが読み込まれていません");
-      document.getElementById('gantt').innerText = 'ライブラリ未読み込み';
-    } else {
-      console.log("Gantt ライブラリ読み込まれています。初期化します。");
-      const tasks = [
-        { id: "Task1", name: "設計フェーズ", start: "2025-08-01", end: "2025-08-05", progress: 100 },
-        { id: "Task2", name: "開発フェーズ", start: "2025-08-06", end: "2025-08-20", progress: 50 },
-        { id: "Task3", name: "テスト・納品", start: "2025-08-21", end: "2025-08-25", progress: 0 }
-      ];
-      new Gantt("#gantt", tasks, { view_mode: 'Day', date_format: 'YYYY-MM-DD' });
-      console.log("Gantt 初期化済み");
-    }
-  </script>
+  <!-- Frappe Gantt を先に読み込み -->
+  <script src="https://cdn.jsdelivr.net/npm/frappe-gantt/dist/frappe-gantt.min.js" integrity="sha384-+gn3x+S9C+Pj0aL23Z9nT1gFhK/h1ZC3SPu2dDy0bhVaKfG7tXGEjDx+2fZc/0YB" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
 </body>
 </html>
