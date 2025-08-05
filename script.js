@@ -1,39 +1,39 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const ganttContainer = document.getElementById('gantt');
-  console.log("DOMContentLoaded イベント開始");
-
-  fetch('schedule.json', { cache: 'no-store' })
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTPエラー: ${response.status}`);
-      return response.json();
-    })
-    .then(tasks => {
-      console.log('工程表データ:', tasks);
-
-      if (typeof Gantt === 'undefined') {
-        throw new Error('Frappe Gantt ライブラリが読み込まれていません。');
+document.addEventListener('DOMContentLoaded', function() {
+  const calendarEl = document.getElementById('calendar');
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    // スケジュール表示形式をガントチャート風に変更
+    // 'timeline'は有料版の機能です。無料版では使用できません。
+    // 代替として'list'や'resource'ビューなどを使用します。
+    initialView: 'listWeek', // 週単位のリスト表示
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'listWeek,listMonth' // 表示形式の切り替え
+    },
+    locale: 'ja',
+    events: [
+      {
+        title: '要件定義',
+        start: '2025-08-05',
+        end: '2025-08-08'
+      },
+      {
+        title: '設計',
+        start: '2025-08-11',
+        end: '2025-08-15'
+      },
+      {
+        title: '開発',
+        start: '2025-08-18',
+        end: '2025-08-29'
+      },
+      {
+        title: 'テスト',
+        start: '2025-09-01',
+        end: '2025-09-05'
       }
+    ]
+  });
 
-      new Gantt(ganttContainer, tasks, {
-        view_mode: 'Day',
-        date_format: 'YYYY-MM-DD',
-        bar_height: 24,
-        bar_corner_radius: 6,
-        arrow_curve: 5,
-        padding: 18,
-        custom_popup_html: task => `
-          <div class="popup-task">
-            <h5>${task.name}</h5>
-            <p><strong>期間:</strong> ${task.start} 〜 ${task.end}</p>
-            <p><strong>進捗:</strong> ${task.progress}%</p>
-          </div>
-        `
-      });
-
-      console.log('ガントチャート初期化完了');
-    })
-    .catch(err => {
-      console.error('読み込みエラー:', err);
-      ganttContainer.innerText = '工程表の読み込みに失敗しました：' + err.message;
-    });
+  calendar.render();
 });
