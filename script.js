@@ -5,7 +5,7 @@ const tasks = [
         id: 'task1',
         name: '要件定義',
         start: '2025-08-05',
-        end: '2025-08-08',
+        end: '2025-08-10',
         progress: 100, // 進捗率（%）
         custom_class: 'bar-milestone' // マイルストーンとして表示（任意）
     },
