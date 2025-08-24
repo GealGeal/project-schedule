@@ -5,7 +5,7 @@ const tasks = [
         id: 'task1',
         name: '要件定義',
         start: '2025-08-05',
-        end: '2025-08-10',
+        end: '2025-08-15',
         progress: 100, // 進捗率（%）
         custom_class: 'bar-milestone' // マイルストーンとして表示（任意）
     },
@@ -29,16 +29,16 @@ const tasks = [
         id: 'task4',
         name: 'テスト',
         start: '2025-09-01',
-        end: '2025-09-05',
-        progress: 0,
+        end: '2025-09-10',
+        progress: 20,
         dependencies: 'task3'
     },
     {
         id: 'task5',
         name: 'リリース',
-        start: '2025-09-08',
-        end: '2025-09-08', // 開始日と終了日を同じにするとマイルストーンになる
-        progress: 0,
+        start: '2025-09-20',
+        end: '2025-09-30', // 開始日と終了日を同じにするとマイルストーンになる
+        progress: 20,
         dependencies: 'task4'
     }
 ];
