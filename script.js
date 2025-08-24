@@ -40,6 +40,14 @@ const tasks = [
         end: '2025-09-30', // 開始日と終了日を同じにするとマイルストーンになる
         progress: 20,
         dependencies: 'task4'
+    },
+        {
+        id: 'task6',
+        name: 'その他',
+        start: '2025-10-01',
+        end: '2025-10-10', // 開始日と終了日を同じにするとマイルストーンになる
+        progress: 20,
+        dependencies: 'task5'
     }
 ];
 
